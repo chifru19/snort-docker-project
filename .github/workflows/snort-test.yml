@@ -1,0 +1,21 @@
+name: Snort Rule Validation
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate-rules:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Snort Syntax Check
+        run: |
+          # This runs a Docker container to check if your rules are valid
+          docker run --rm -v ${{ github.workspace }}/config:/etc/snort/rules \
+          cisco/snort3 snort -c /etc/snort/rules/local.rules -T

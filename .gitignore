@@ -1,0 +1,8 @@
+# Ignore the terraform directory containing large binaries
+**/.terraform/*
+
+# Ignore log files
+logs/*.log
+
+# Ignore OS-specific files
+.DS_Store
