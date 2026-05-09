@@ -16,6 +16,6 @@ jobs:
 
       - name: Snort Syntax Check
         run: |
-          # Use the public jasonish/snort image to avoid pull access errors
+          # Pulls the official Snort 3 image from the verified registry
           docker run --rm -v ${{ github.workspace }}/config:/etc/snort/rules \
-          jasonish/snort snort -c /etc/snort/rules/local.rules -T
+          index.docker.io/snort/snort3:latest snort -c /etc/snort/rules/local.rules -T
