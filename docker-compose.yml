@@ -6,7 +6,7 @@ services:
     volumes:
       - ./config:/etc/snort/rules
       - ./logs:/var/log/snort
-    # Snort 3 handles 'any' interface (DLT 113) without crashing
-    command: snort -c /etc/snort/rules/local.rules -i any -A alert_fast
+    # Simplified Snort 3 command for console output
+    command: snort -c /etc/snort/rules/local.rules -i any -A cmg
     stdin_open: true
     tty: true
