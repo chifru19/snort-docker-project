@@ -16,6 +16,6 @@ jobs:
 
       - name: Snort Syntax Check
         run: |
-          # This runs a Docker container to check if your rules are valid
+          # Use the public jasonish/snort image to avoid pull access errors
           docker run --rm -v ${{ github.workspace }}/config:/etc/snort/rules \
-          cisco/snort3 snort -c /etc/snort/rules/local.rules -T
+          jasonish/snort snort -c /etc/snort/rules/local.rules -T
