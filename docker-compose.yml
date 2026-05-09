@@ -6,7 +6,7 @@ services:
     volumes:
       - ./config:/etc/snort/rules
       - ./logs:/var/log/snort
-    # Removed -R flag to prevent the pidfile suffix error
-    command: snort -c /etc/snort/rules/local.rules -A console -i en0
+    # Snort 3 handles 'any' interface (DLT 113) without crashing
+    command: snort -c /etc/snort/rules/local.rules -i any -A alert_fast
     stdin_open: true
     tty: true

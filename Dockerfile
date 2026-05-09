@@ -1,10 +1,11 @@
 FROM ubuntu:22.04
 
-# This prevents the "Interface" prompt from stopping the build
+# Prevent interactive prompts
 ENV DEBIAN_FRONTEND=noninteractive
 
+# Install Snort 3 specifically
 RUN apt-get update && \
-    apt-get install -y snort && \
+    apt-get install -y snort3 && \
     rm -rf /var/lib/apt/lists/*
 
 WORKDIR /etc/snort
