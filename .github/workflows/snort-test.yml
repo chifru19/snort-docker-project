@@ -14,8 +14,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Build Local Snort Image
+        run: docker build -t local-snort .
+
       - name: Snort Syntax Check
         run: |
-          # Pulls the official Snort 3 image from the verified registry
           docker run --rm -v ${{ github.workspace }}/config:/etc/snort/rules \
-          index.docker.io/snort/snort3:latest snort -c /etc/snort/rules/local.rules -T
+          local-snort snort -c /etc/snort/rules/local.rules -T

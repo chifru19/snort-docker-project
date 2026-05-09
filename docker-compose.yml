@@ -1,12 +1,11 @@
 services:
   snort3:
-    image: index.docker.io/snort/snort3:latest
+    build: .
     container_name: snort_ids
     network_mode: "host"
     volumes:
       - ./config:/etc/snort/rules
       - ./logs:/var/log/snort
-    # -i en0 is required for Mac Wi-Fi; use -T for testing or remove -T for live alerts
     command: snort -c /etc/snort/rules/local.rules -R /etc/snort/rules/local.rules -A console -i en0
     stdin_open: true
     tty: true
