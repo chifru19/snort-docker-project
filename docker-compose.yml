@@ -1,12 +1,14 @@
 services:
   snort3:
-    build: .
+    image: ciscotalos/snort3
+    platform: linux/amd64
     container_name: snort_ids
     network_mode: "host"
+    user: root
     volumes:
       - ./config:/etc/snort/rules
       - ./logs:/var/log/snort
-    # Simplified Snort 3 command for console output
-    command: snort -c /etc/snort/rules/local.rules -i any -A cmg
+    # Updated command to point to the official internal config path
+    command: snort -c /etc/snort/snort.lua -R /etc/snort/rules/local.rules -i any -A cmg
     stdin_open: true
     tty: true

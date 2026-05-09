@@ -1,11 +1,6 @@
-FROM ubuntu:22.04
+FROM ciscotalos/snort3
 
-# Prevent interactive prompts
-ENV DEBIAN_FRONTEND=noninteractive
+# Create necessary directories
+RUN mkdir -p /etc/snort/rules /var/log/snort
 
-# Install Snort 3 specifically
-RUN apt-get update && \
-    apt-get install -y snort3 && \
-    rm -rf /var/lib/apt/lists/*
-
-WORKDIR /etc/snort
+WORKDIR /etc/snort/rules
