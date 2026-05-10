@@ -1,5 +1,1 @@
-# Define the variable so Snort understands the rule below
-var HOME_NET any
-
-# Your ICMP alert rule
-alert icmp any any -> $HOME_NET any (msg:"ICMP Ping Detected"; sid:1000001; rev:1;)
+alert icmp any any -> any any (msg:"ICMP Packet Detected"; sid:1000001; rev:1;)
