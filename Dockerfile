@@ -2,14 +2,12 @@ FROM ciscotalos/snort3:latest
 
 USER root
 
-# Ensure the directory exists
+# Create directory
 RUN mkdir -p /usr/local/etc/snort/rules
 
-# Copy everything from config into the rules dir
-# Using the wildcard * helps if there are hidden characters in filenames
+# Copy rules
 COPY config/local.rules /usr/local/etc/snort/rules/local.rules
 
-# Validate using the absolute path and explicit config loading
+# On GitHub, we use the full path and skip 'ldconfig' to keep it simple
 RUN /usr/local/bin/snort -c /usr/local/etc/snort/snort.lua \
-    -R /usr/local/etc/snort/rules/local.rules \
-    --plugin-path /usr/local/lib/snort_extra -T
+    -R /usr/local/etc/snort/rules/local.rules -T
